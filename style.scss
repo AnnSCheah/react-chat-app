@@ -1,7 +1,25 @@
+@mixin mobile {
+    @media screen and (max-width: 480px) {
+        @content
+    }
+};
+
+@mixin tablet {
+    @media screen and (max-width: 768px) {
+        @content
+    }
+};
+
 :root {
 --bg_color: rgb(156, 156, 255);
+--secondary_color: rgb(120, 120, 255);
+--tertiary_color:rgb(87, 87, 253);
+--white_theme:rgb(239, 239, 255);
+
+font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Login Page */
 .formContainer {
     background-color: var(--bg_color);
     height: 100vh;
@@ -10,7 +28,7 @@
     justify-content: center;
 
     .formWrapper {
-        background-color: white;
+        background-color: var(--white_theme);
         padding: 20px 60px;
         border-radius: 10px;
         display: flex;
@@ -36,7 +54,7 @@
 
             button {
                 background-color: var(--bg_color);
-                color: white;
+                color: var(--white_theme);
                 padding: 10px;
                 font-weight: bold;
                 border:none;
@@ -47,6 +65,209 @@
     }
 }
 
+/* Home */
+
+.home {
+    background-color: var(--bg_color);
+    height: 100vh;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+
+    .container {
+        border: 2px solid var(--white_theme);
+        border-radius: 10px;
+        width: 65%;
+        height: 80%;
+        display: flex;
+        overflow: hidden;
+        @include tablet {
+            width: 90%;
+        }
+
+        .sidebar {
+            position: relative;
+            flex: 1;
+            background-color: var(--secondary_color);
+
+            .navbar {
+                display: flex;
+                align-items: center;
+                background-color: var(--tertiary_color);
+                height: 50px;
+                padding: 10px;
+                justify-content: space-between;
+                color: var(--white_theme);
+
+
+                .user {
+                    display: flex;
+                    gap: 10px;
+
+                    button {
+                        background-color: var(--secondary_color);
+                        color: var(--white_theme);
+                        font-size: 10px;
+                        border: none;
+                        border-radius: 10px;
+                        cursor:pointer;
+                            &:hover {
+                            background-color: var(--white_theme);
+                            color: var(--secondary_color);
+                        }
+                        @include tablet {
+                            position: absolute;
+                            padding: 10px;
+                            bottom: 10px;
+                            left: 10px;
+
+                            background-color: var(--tertiary_color);
+                        }
+                    }
+                }
+            }
+
+            .search {
+                border-bottom: 1px solid var(--white_theme);
+
+                .searchForm {
+                    padding: 10px;
+
+                    input {
+                        background-color: transparent;
+                        border: none;
+                        color: var(--white_theme);
+                        outline: none;
+
+                        &::placeholder {
+                            color: lightgray;
+                        }
+                    }
+                }
+            }
+            .userChat {
+                padding: 10px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                color: var(--white_theme);
+                cursor: pointer;
+
+                &:hover {
+                    background-color: var(--white_theme);
+                    color: black;
+                }
+                .userChatInfo {
+                    span {
+                        font-size: 18px;
+                        font-weight: 500;
+                    }
+
+                    p {
+                        font-size: 14px;
+                        color: lightgray;
+                    }
+                }
+            }
+        }
+
+        .chat {
+            flex: 2;
+
+            .chatInfo {
+                background-color: var(--secondary_color);
+                height: 50px;
+                display: flex;
+                align-items: center;
+                padding: 10px;
+                color: lightgray;
+            }
+
+            .messages {
+                background-color: var(--white_theme);
+                padding: 10px;
+                height: calc(100% - 160px);
+                overflow: auto;
+
+                .message {
+                display: flex;
+                gap: 20px;
+
+                    .messageInfo {
+                        display: flex;
+                        flex-direction: column;
+                        font-weight: 300;
+                        margin-bottom: 20px;
+
+                        .messageName {
+                            font-weight: bold;
+                        }
+                    }
+
+                    .messageContent {
+                        max-width: 80%;
+                        display: flex;
+                        flex-direction: column;
+
+                        p {
+                            background-color: white;
+                            padding: 10px;
+                            border-radius: 0px 10px 10px 10px;
+                        }
+                    }
+
+                    &.owner {
+                        flex-direction: row-reverse;
+
+                        p {
+                            background-color: var(--secondary_color);
+                            color: white;
+                            border-radius: 10px 0 10px 10px;
+                        }
+                    }
+                }
+            }
+
+            .input {
+                height: 50px;
+                background-color: white;
+                padding: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                input {
+                width: 100%;
+                border: none;
+                outline: none;
+                font-size: 18px;
+
+                    &::placeholder{
+                        color: lightgray;
+                    }
+                }
+
+
+                .send {
+                    button {
+                    border: none;
+                    border-radius: 50px;
+                    padding: 10px 15px;
+                    color: white;
+                    background-color: var(--secondary_color);
+
+                        &:hover {
+                            background-color: var(--tertiary_color);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Trademark */
+
 .trademark {
     p {
         display:flex;
@@ -54,15 +275,15 @@
         margin: 0;
         padding: 15px;
         background-color: var(--bg_color);
-        color: white;
+        color: var(--white_theme);
         font-size: 18px;
     }
 
     a {
         color: black;
         text-decoration: none;
-        &:hover {
-            color: white;
+            &:hover {
+            color: var(--white_theme);
             text-decoration: underline;
         }
     }
