@@ -16,10 +16,14 @@ export const Login = () => {
     e.preventDefault();
     const displayName = e.target[0].value;
     const email = e.target[1].value;
-    const password = "123456";
+    const password = "123456"; // * Placeholder password
 
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
+
+      updateProfile(res.user, {
+        displayName,
+      });
 
       // * Store the user data into firestore
       await setDoc(doc(db, "users", res.user.uid), {
@@ -27,6 +31,7 @@ export const Login = () => {
         displayName,
         email,
       });
+      await setDoc(doc(db, "userChats", res.user.uid), {});
       navigate("/");
     } catch (err) {
       try {

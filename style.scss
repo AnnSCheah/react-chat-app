@@ -104,6 +104,10 @@ font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                     display: flex;
                     gap: 10px;
 
+                    span {
+                        color: white;
+                    }
+
                     button {
                         background-color: var(--secondary_color);
                         color: var(--white_theme);
@@ -136,11 +140,11 @@ font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                     input {
                         background-color: transparent;
                         border: none;
-                        color: var(--white_theme);
+                        color: black;
                         outline: none;
 
                         &::placeholder {
-                            color: lightgray;
+                            color: black;
                         }
                     }
                 }
@@ -159,13 +163,14 @@ font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                 }
                 .userChatInfo {
                     span {
+                        color: var(--white_theme);
                         font-size: 18px;
                         font-weight: 500;
                     }
 
                     p {
                         font-size: 14px;
-                        color: lightgray;
+                        color: white;
                     }
                 }
             }
